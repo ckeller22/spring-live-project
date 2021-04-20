@@ -23,9 +23,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    implementation 'io.rest-assured:rest-assured:4.3.3'
     implementation 'io.rest-assured:spring-mock-mvc:4.3.3'
+    implementation 'io.rest-assured:rest-assured-all:4.3.3'
 }
 
 test {
