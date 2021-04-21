@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "org.openapi.generator" version "5.1.0"
 }
 
 group = 'com.example'
@@ -29,4 +30,26 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    generateModelDocumentation = false
+    generateApiDocumentation = false
+    inputSpec = "$rootDir/account-info-openapi.yaml".toString()
+    outputDir = "$buildDir/generated".toString()
+    apiPackage = "com.acme.banking.api"
+    invokerPackage = "com.acme.banking.invoker"
+    modelPackage = "com.acme.banking.model"
+    configOptions = [
+            dateLibrary: "java8",
+            basePackage: "com.acme.banking",
+            interfaceOnly: "true",
+            useBeanValidation: "false"
+    ]
+}
+
+openApiValidate {
+    inputSpec = "$rootDir/account-info-openapi.yaml".toString()
+    recommend = true
 }
